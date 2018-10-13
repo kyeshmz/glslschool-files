@@ -1,0 +1,26 @@
+pre .string,
+pre .tag .value {
+	color:			darkorange;
+}
+
+pre .comment {
+	color:			#aa9;
+}
+
+pre .keyword,
+pre .tag .title,
+pre .css .tag {
+	color:			firebrick;
+}
+
+pre .regexp,
+pre .tag .attribute {
+	color:			#b8f;
+}
+
+pre .literal {
+	color:			#f4a;
+}
+pre .number {
+	color:			lightseagreen;
+}
