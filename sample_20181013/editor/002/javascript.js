@@ -59,6 +59,11 @@
 
         // プログラムオブジェクトから unifrom location を取得しタイプを設定する @@@
         scenePrg.uniLocation[0] = gl.getUniformLocation(scenePrg.program, 'mouse');
+        //uniType 数字が要素数、fが float vが vector (C++の配列)
+        //uniform1f == float
+        //uniform3fv == vec3
+        //uniform4fv == vec4
+        //uniformMatrix4fv == mat4
         scenePrg.uniType[0]     = 'uniform2fv';
 
         // 頂点座標を定義する
@@ -93,6 +98,7 @@
             gl.useProgram(scenePrg.program);
 
             // uniform 変数をリアルタイムにシェーダにプッシュする @@@
+            //mouseの変数を送って、CPUと連携してる
             gl[scenePrg.uniType[0]](scenePrg.uniLocation[0], mouse);
 
             // VBO を有効化する

@@ -53,10 +53,16 @@
             WE.run = eve.keyCode !== 27;
         }, false);
         // 外部ファイルのシェーダのソースを取得しプログラムオブジェクトを生成
+        //WE.fs フラグメントシェーダーのソースコード
+        //WE.vs 頂点シェーダーのソースコード
+        //シェーダーはコンパイルされる
+        //プログラムオブジェクトを生成して生成して、シェーダーをリンクしている
+        //コンパイル済みのシェーダーを実行している
         let vs = createShader(WE.vs, gl.VERTEX_SHADER);
         let fs = createShader(WE.fs, gl.FRAGMENT_SHADER);
         let prg = createProgram(vs, fs);
         if(prg == null){return;}
+        //管理しやすくするためにラップしているオブジェクト
         scenePrg = new ProgramParameter(prg);
         // 初期化処理を呼び出す
         init();
@@ -65,19 +71,24 @@
     // 頂点の情報などあらゆる初期化処理を行い描画開始の準備をする
     function init(texture){
         // プログラムオブジェクトから attribute location を取得しストライドを設定する
+        //シェーダー側と1 on 1になっている
+        //Strideはシェーダー側の変数の型に比例している
         scenePrg.attLocation[0] = gl.getAttribLocation(scenePrg.program, 'position');
         scenePrg.attStride[0]   = 3;
         // 頂点座標を定義する
+        //頂点が最初に定義されるのはCPU側
+        //頂点のローカル座標
         let position = [
              0.0,  0.0,  0.0, // 1 つ目の頂点の X, Y, Z
-             1.0,  1.0,  0.0, // 2 つ目の頂点の X, Y, Z
+            1.0,  1.0,  0.0, // 2 つ目の頂点の X, Y, Z
             -1.0,  1.0,  0.0, // 3 つ目の頂点の X, Y, Z
-             1.0, -1.0,  0.0, // 4 つ目の頂点の X, Y, Z
+            1.0, -1.0,  0.0, // 4 つ目の頂点の X, Y, Z
             -1.0, -1.0,  0.0  // 5 つ目の頂点の X, Y, Z
         ];
         // 頂点座標の配列から VBO（Vertex Buffer Object）を生成する
         let VBO = [createVbo(position)];
         // WebGL で canvas をクリアする色の設定
+        //背景を０から１の間に定義
         gl.clearColor(0.0, 0.0, 0.0, 1.0);
         // 未初期化の変数を初期化する
         startTime = Date.now();
@@ -95,9 +106,12 @@
             canvas.height = canvasHeight;
             // canvas のサイズとビューポートの大きさを揃える
             gl.viewport(0, 0, canvasWidth, canvasHeight);
+            //gl.viewport(0, 0, canvasWidth/2, canvasHeight/2);
             // どのプログラムオブジェクトを利用するか設定
             gl.useProgram(scenePrg.program);
             // VBO を有効化する
+            //GPUのデータを送る
+            //頂点データをバインドする
             setAttribute(VBO, scenePrg.attLocation, scenePrg.attStride);
             // 事前に設定済みの色でクリアする
             gl.clear(gl.COLOR_BUFFER_BIT);

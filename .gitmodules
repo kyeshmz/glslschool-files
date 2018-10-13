@@ -1,0 +1,3 @@
+[submodule "webgl_editron"]
+	path = webgl_editron
+	url = https://github.com/doxas/webgl_editron.git
