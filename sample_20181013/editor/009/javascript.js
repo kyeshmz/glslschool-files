@@ -55,7 +55,7 @@
         // プログラムオブジェクトから attribute location を取得しストライドを設定する
         scenePrg.attLocation[0] = gl.getAttribLocation(scenePrg.program, 'vertex');
         scenePrg.attStride[0]   = 1;
-        // プログラムオブジェクトから unifrom location を取得しタイプを設定する
+        // プログラムオブジェクトから uniform location を取得しタイプを設定する
         scenePrg.uniLocation[0] = gl.getUniformLocation(scenePrg.program, 'mouse');
         scenePrg.uniType[0]     = 'uniform2fv';
 
