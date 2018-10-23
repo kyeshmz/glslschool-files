@@ -22,7 +22,9 @@ void main(){
         (s + 1.0) * 0.5,
         0.0
     );
-
+    
+    vColor = vec3(vertex, 0.0, vertex);
+    
     gl_Position = vec4(vec2(c, s) * dist, 0.0, 1.0);
 
     // 頂点の大きさは頂点シェーダで設定する

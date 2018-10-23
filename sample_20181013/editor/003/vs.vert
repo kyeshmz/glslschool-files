@@ -16,5 +16,5 @@ void main(){
     vColor = color;
 
     // 頂点の大きさは頂点シェーダで設定する
-    gl_PointSize = 8.0;
+    gl_PointSize = 10.0;
 }

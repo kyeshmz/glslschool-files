@@ -1,5 +1,5 @@
 // JavaScript から VBO 経由で送られてきた頂点座標
-attribute float vertex;
+attribute float vertex; //comes as float 0.0~ 0.999 のどれか
 // JavaScript から送られてくる値を受け取る uniform 変数
 uniform vec2 mouse;
 

@@ -1,5 +1,4 @@
-// Author @patriciogv - 2015
-// Title: Ikeda Test patterns
+// Fork from Author @patriciogv - 2015
 
 #ifdef GL_ES
 precision mediump float;

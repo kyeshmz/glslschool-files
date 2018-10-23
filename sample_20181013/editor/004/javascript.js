@@ -119,7 +119,10 @@
             gl.clear(gl.COLOR_BUFFER_BIT);
 
             // バインドした VBO と IBO にもとづき頂点を描画する @@@
-            gl.drawElements(gl.TRIANGLES, index.length, gl.UNSIGNED_SHORT, 0);
+            //draw arrays インデクス使わないぜ
+            //draw elements インデクス使うぜ
+            
+            gl.drawElements(gl.TRIANGLE_STRIP, index.length, gl.UNSIGNED_SHORT, 0);
 
             // GPU 上のコマンドバッファを確実に実行させる
             gl.flush();

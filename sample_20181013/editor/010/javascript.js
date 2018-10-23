@@ -66,7 +66,7 @@
             // ループ１回につき、２つの頂点が追加される
             let j = i / 100.0;
             vertices.push(
-                j,  1.0,
+                j,  2.0,
                 j, -1.0
             );
         }
@@ -105,6 +105,7 @@
             // バインドした VBO にもとづき頂点を描画する @@@
             gl.drawArrays(gl.POINTS, 0, vertices.length / 2);
             // 二回目の描画ではプリミティブをラインにする @@@
+            //間の線を入れている
             gl.drawArrays(gl.LINES, 0, vertices.length / 2);
             // GPU 上のコマンドバッファを確実に実行させる
             gl.flush();

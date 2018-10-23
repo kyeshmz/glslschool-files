@@ -89,7 +89,7 @@
         render();
         function render(){
             // 描画開始からの経過時間（秒単位）
-            nowTime = (Date.now() - startTime) / 1000;
+            nowTime = (Date.now() - startTime) / 200;
             // ウィンドウサイズの変更に対応するため canvas のサイズを更新
             canvasWidth   = window.innerWidth;
             canvasHeight  = window.innerHeight;
