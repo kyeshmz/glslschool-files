@@ -5,6 +5,7 @@ uniform   mat4  mvpMatrix; // 座標変換行列
 varying   vec4  vColor;    // フラグメントシェーダへ送る色
 varying   vec2  vTexCoord; // フラグメントシェーダへ送るテクスチャ座標 @@@
 void main(){
+    //texture and color are sent to the fragment shader through varying
     vColor = color;
     vTexCoord = texCoord;
     gl_Position = mvpMatrix * vec4(position, 1.0);

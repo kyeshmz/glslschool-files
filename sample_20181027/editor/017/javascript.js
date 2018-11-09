@@ -83,7 +83,7 @@
         {
             let width = 5.0;              // 全体の幅
             let half = width / 2.0;       // 幅の半分（上下左右に線対称に展開するため）
-            let interval = 0.1;           // 頂点同士の間隔
+            let interval = 0.05;           // 頂点同士の間隔 resolution increases as number decreaeses
             let count = width / interval; // 幅と間隔からループカウント数を求める
             // ループで一気に頂点を定義する
             for(let i = 0; i <= count; ++i){
@@ -459,8 +459,9 @@
         gl.bindRenderbuffer(gl.RENDERBUFFER, depthRenderBuffer);
         gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, width, height);
         gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, depthRenderBuffer);
-        let fTexture = gl.createTexture();
-        gl.bindTexture(gl.TEXTURE_2D, fTexture);
+        let fTexture = gl.createTexture(); //create texture and initalize it, nothing inside
+        gl.activateTexture(gl.TEXTURE0);//activate unit texture number, just use 0 for now
+        gl.bindTexture(gl.TEXTURE_2D, fTexture);  // bind texture for interaction
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width, height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);

@@ -139,8 +139,8 @@
             let far    = 20.0;
 
             // ビュー・プロジェクション座標変換行列
-            mat.lookAt(cameraPosition, centerPoint, cameraUpDirection, vMatrix);
-            mat.perspective(fovy, aspect, near, far, pMatrix);
+            mat.lookAt(cameraPosition, centerPoint, cameraUpDirection, vMatrix); //view version of matrix
+            mat.perspective(fovy, aspect, near, far, pMatrix); //projection matrix
             mat.multiply(pMatrix, vMatrix, vpMatrix);
             // カメラのパラメータ類を更新し行列に効果を与える
             camera.update();
@@ -151,9 +151,15 @@
             // VBO を有効化
             setAttribute(VBO, scenePrg.attLocation, scenePrg.attStride, null);
             // モデル座標変換
-            mat.identity(mMatrix);
-            mat.rotate(mMatrix, nowTime * 0.2, [0.0, 1.0, 0.0], mMatrix);
+            mat.identity(mMatrix); // model matrix initialization
+            mat.rotate(mMatrix, nowTime * 1.5, [0.0, 0.0, .0], mMatrix); // rotation transformation of m matrix
+           //source of transformation, 
+           //radian of rotation
+           //axis of rotation
+           //return back to matrix
+           mat.scale(mMatrix, [3.0,1.0,3.0],mMatrix);
             mat.multiply(vpMatrix, mMatrix, mvpMatrix);
+            //combine the 3 arrays together
             // uniform 変数をリアルタイムにシェーダにプッシュする @@@
             gl[scenePrg.uniType[0]](scenePrg.uniLocation[0], false, mvpMatrix);
             gl[scenePrg.uniType[2]](scenePrg.uniLocation[2], nowTime);

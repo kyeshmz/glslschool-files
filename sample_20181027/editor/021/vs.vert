@@ -9,14 +9,16 @@ void main(){
     // 時間の経過から回転行列を生成する
     float s = sin(time * 2.0 * position.z - PI);
     float c = cos(time * 2.0 * position.z - PI);
-    mat2 m = mat2(c, s, -s, c);
+  //  mat2 m = mat2(c, s, -s, c); //orig
+    mat2 m = mat2(s, c, -s, c);
 
     // 回転行列を使って頂点を回転してから移動する
-    vec2 p = m * position.xy + positionOffset.xy;
-    vec3 pos = vec3(p, positionOffset.z);
+    //vec2 p = m * position.xy + positionOffset.xy;
+    vec2 p = m * position.xy + tan(time+positionOffset.xz);
+    vec3 pos = vec3(p, positionOffset.xy);
 
     // 回転等を行ったあとの座標で MVP 変換する
-    gl_Position = mvpMatrix * vec4(pos, 1.0);
+    gl_Position = mvpMatrix * vec4(pos, 2.0);
     vTexCoord = texCoord;
 }
 

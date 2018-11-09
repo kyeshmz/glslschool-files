@@ -7,9 +7,11 @@ varying   vec4  vColor;    // フラグメントシェーダへ送る色
 varying   vec2  vTexCoord; // フラグメントシェーダへ送るテクスチャ座標
 void main(){
     // 時間の経過と sin を利用して係数を作る @@@
+    // grows and decreases
     float s = abs(sin(time));
 
     // 係数を頂点のアルファに掛ける
+    //adds transparency
     vColor = color * vec4(vec3(1.0), s);
 
     vTexCoord = texCoord;

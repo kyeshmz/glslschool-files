@@ -11,8 +11,9 @@ void main(){
     vec4 samplerColor1 = texture2D(textureUnit1, vTexCoord);
 
     // sin を使って状態を二値化する @@@
-    float t0 = step(0.0, sin(time));
+    float t0 = step(0.0, sin(time)); // returns 0 or 1, if sin(time) > 0, then 1
     float t1 = 1.0 - t0;
+
 
     // 二値化したフラグを用いて出力する色を決める @@@
     vec4 dest = samplerColor0 * t0 + samplerColor1 * t1;

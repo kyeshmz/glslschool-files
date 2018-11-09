@@ -10,9 +10,11 @@ void main(){
     // テクスチャ座標（0.0 ~ 1.0）を変換して -1.0 ～ 1.0 にする @@@
     vec2 p = texCoord * 2.0 - 1.0;
     // 変換した値とマウスカーソルの位置ベクトルとの距離を測る @@@
+    // ddont think in 3d
+    //comparing the texture with the mouse curosr cooridnates
     float len = length(p - mouse);
     // 距離が 0.5 より小さいならポイントサイズを大きくする @@@
-    float size = 8.0 * (1.0 + step(len, 0.5));
+    float size = 8.0 * (1.0 + step(len, 0.8));
 
     vColor = color;
     vTexCoord = texCoord;

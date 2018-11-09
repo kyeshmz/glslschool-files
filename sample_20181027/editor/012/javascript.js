@@ -71,7 +71,7 @@
             // ES2015 から JavaScript ではブロックスコープが利用できるようになった。
             // このように一時的なループを作るときなどはスコープを切っておくと、無駄に
             // グローバルな名前空間を気にしなくてよいのでおすすめ
-            let width = 2.0;              // 全体の幅
+            let width = 6.0;              // 全体の幅
             let half = width / 2.0;       // 幅の半分（上下左右に線対称に展開するため）
             let interval = 0.1;           // 頂点同士の間隔
             let count = width / interval; // 幅と間隔からループカウント数を求める
@@ -130,13 +130,13 @@
             gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
             // カメラ関連のパラメータ
-            let cameraPosition    = [0.0, 0.0, 3.0]; // カメラの座標
+            let cameraPosition    = [0.0, 0.0, 5.0]; // カメラの座標
             let centerPoint       = [0.0, 0.0, 0.0]; // カメラの注視点
             let cameraUpDirection = [0.0, 1.0, 0.0]; // カメラの上方向
             let fovy   = 60 * camera.scale;          // カメラの視野角
-            let aspect = canvasWidth / canvasHeight; // カメラのアスペクト比
+            let aspect = canvasWidth  / canvasHeight; // カメラのアスペクト比
             let near   = 0.1;                        // 最近距離クリップ面
-            let far    = 10.0;                       // 最遠距離クリップ面
+            let far    = 4.0;                       // 最遠距離クリップ面
 
             // ビュー・プロジェクション座標変換行列
             mat.lookAt(cameraPosition, centerPoint, cameraUpDirection, vMatrix);

@@ -73,6 +73,8 @@
             createVbo(sphereData.p), // position
             createVbo(sphereData.c)  // color
         ];
+        let IBO = createIbo(sphereData.i);
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, IBO);
 
         // 行列関連変数の宣言と初期化
         let mMatrix   = mat.identity(mat.create()); // モデル座標変換行列
@@ -140,7 +142,8 @@
             gl[scenePrg.uniType[0]](scenePrg.uniLocation[0], false, mvpMatrix);
             gl[scenePrg.uniType[2]](scenePrg.uniLocation[2], nowTime);
             // 描画
-            gl.drawArrays(gl.POINTS, 0, sphereData.p.length / 3);
+            gl.drawArrays(gl.POINTS, 0, sphereData.p.length / 1);
+            gl.drawElements(gl.TRIANGLES, sphereData.i.length, gl.UNSIGNED_SHORT, 0);
 
             // コマンドバッファを実行させ render を再帰呼出し
             gl.flush();

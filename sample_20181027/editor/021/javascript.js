@@ -81,8 +81,8 @@
         // 頂点座標を定義する @@@
         let position = [];
         let positionOffset = [];
-        let texCoord = [];
-        let index = [];
+        let texCoord = []; // texture coords
+        let index = []; // for the index
         let indexCount = 0;
         {
             let width = 5.0;              // 全体の幅
@@ -111,7 +111,7 @@
                          hi, -hi, r  // x, y, 乱数
                     );
                     positionOffset.push(
-                        x, y, z,
+                        x, y, z, // 変化する値が入っている
                         x, y, z,
                         x, y, z,
                         x, y, z
