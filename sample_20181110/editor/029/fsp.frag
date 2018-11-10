@@ -64,9 +64,11 @@ void main(){
     p.x *= aspect;
 
     // p の長さを測り画面中心からの距離を求めて、中心ほど大きな値になる状態を作る
-    float len = min(0.5 / length(p), 1.0);
+    // by making the 分子 bigger, it makes the circle bigger as the amount being able to be divided becomes less
+    float len = min(0.7 / length(p), 1.0);
 
     // 赤色ノイズ模様を作る
+    //two noises are running at different speeds
     vec2 rVector = gl_FragCoord.st - vec2(time * 5.0, time * 500.0);
     float rNoise = snoise(rVector, gl_FragCoord.st / resolution, resolution);
     vec3 rColor  = RED_COLOR * rNoise * pow(len, 5.0);
@@ -80,5 +82,6 @@ void main(){
     vec4 samplerColor = texture2D(texture, vTexCoord);
 
     // テクスチャの色にノイズの値を加算する
-    gl_FragColor = samplerColor + vec4(rColor * 2.0 + yColor, 0.0);
+    //gl_FragColor = samplerColor + vec4(rColor * 2.0 + yColor, 0.0);
+    gl_FragColor = samplerColor + vec4(yColor * 2.0 , 0.0);
 }

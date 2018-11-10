@@ -8,10 +8,14 @@ void main(){
     vec2 texCoord = gl_FragCoord.st / resolution;
 
     // 正規化した座標を作る
+    //switches the origin from the botton left to the middle
     vec2 p = texCoord * 2.0 - 1.0;
 
     // 赤い色を右側にずらすためのテクスチャ座標と色
+    // abs は絶対値
+    //synchronize the same loop to both - and +
     vec2 rTexCoord = texCoord + vec2(-abs(p.x) * 0.01, 0.0);
+    //vec2 rTexCoord = texCoord + vec2(abs(p.x) * 0.01, 0.0);
     vec4 redColor = texture2D(texture, rTexCoord);
 
     // 本来の色をテクスチャから読み出す

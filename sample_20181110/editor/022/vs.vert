@@ -6,4 +6,5 @@ varying   vec4 vColor;
 void main(){
     vColor = color;
     gl_Position = mvpMatrix * vec4(position, 1.0);
+    //gl_Position = mvpMatrix;
 }

@@ -74,5 +74,11 @@ void main(){
     vec4 samplerColor = texture2D(texture, vTexCoord);
 
     // テクスチャの色にノイズの値を乗算する
+    // this is multiplying the sin wave to the polygon
     gl_FragColor = samplerColor * vec4(rColor, 1.0);
+    //gl_FragColor = samplerColor / vec4(rColor, 1.0);
+    //adding the sin wave to the polygon
+    //gl_FragColor = samplerColor + vec4(rColor, 1.0);
+    //OG panel
+    //gl_FragColor = samplerColor;
 }

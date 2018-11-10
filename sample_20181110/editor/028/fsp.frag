@@ -35,13 +35,25 @@ float irnd(vec2 p){
                   rnd(vec2(i.x + 1.0, i.y + 1.0)));
     return interpolate(interpolate(v.x, v.y, f.x), interpolate(v.z, v.w, f.x), f.y);
 }
+
+// 補間乱数 その2
+float irnd2(vec2 p){
+    vec2 i = floor(p);
+    vec2 f = fract(p);
+    vec4 v = vec4(rnd2(vec2(i.x,       i.y      )),
+                  rnd2(vec2(i.x + 1.0, i.y      )),
+                  rnd2(vec2(i.x,       i.y + 1.0)),
+                  rnd2(vec2(i.x + 1.0, i.y + 1.0)));
+    return interpolate(interpolate(v.x, v.y, f.x), interpolate(v.z, v.w, f.x), f.y);
+}
+
 // 補間乱数をオクターブ分だけ重ね合わせる
 float noise(vec2 p){
     float t = 0.0;
     for(int i = 0; i < oct; i++){
         float freq = pow(2.0, float(i));
         float amp  = pow(per, float(oct - i));
-        t += irnd(vec2(p.x / freq, p.y / freq)) * amp;
+        t += irnd2(vec2(p.x / freq, p.y / freq)) * amp;
     }
     return t;
 }

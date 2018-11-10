@@ -1,4 +1,5 @@
 precision highp float;
+//precision lowp float;
 uniform sampler2D texture;   // フレームバッファに描画したレンダリング結果
 uniform float     time;      // 時間の経過
 varying vec2      vTexCoord; // テクスチャ座標
@@ -20,11 +21,16 @@ float rnd2(vec2 n){
 
 void main(){
     // ホワイトノイズを生成
+    // n = 0 ~ 1
     float n = rnd(gl_FragCoord.st + mod(time, 10.0));
+    // this makes it playing around with 0 ~ 0.2
+    n = n * 0.2 + 0.8;
 
     // フレームバッファの描画結果をテクスチャから読み出す
     vec4 samplerColor = texture2D(texture, vTexCoord);
 
     // ホワイトノイズを乗算して出力する
     gl_FragColor = samplerColor * vec4(vec3(n), 1.0);
+    //regular status
+    //gl_FragColor = samplerColor;
 }

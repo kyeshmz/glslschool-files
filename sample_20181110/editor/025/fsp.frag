@@ -8,13 +8,16 @@ void main(){
     vec2 texCoord = gl_FragCoord.st / resolution;
 
     // 正規化した座標を作る
+    //make origin in the middle
+    
     vec2 p = texCoord * 2.0 - 1.0;
 
     // 正規化座標をベクトルとみなして長さを測る
     float len = length(p);
 
     // バレルディストーション
-    vec2 barrel = p * (len + 2.5) * 0.2;
+    //the bigger the number to len, the wider the lens becomes
+    vec2 barrel = p * (len + 4.5) * 0.2;
 
     // ディストーションした後の座標をテクスチャ座標として使う
     texCoord = (barrel + 1.0) * 0.5;

@@ -23,15 +23,22 @@ float rnd2(vec2 n){
 
 void main(){
     // スクリーン上の座標（0.0 ~ resolution）を正規化（-1.0 ~ 1.0）する @@@
+    //origin to the middle of the screen
     vec2 p = (gl_FragCoord.st / resolution) * 2.0 - 1.0;
 
     // フレームバッファの描画結果をテクスチャから読み出す
     vec4 samplerColor = texture2D(texture, vTexCoord);
 
     // 簡単なモノクロ化 @@@
+    //white black
     float dest = (samplerColor.r + samplerColor.g + samplerColor.b) / 3.0;
 
     // ビネット（四隅が暗くなるような演出） @@@
+    //same logic of mosaic
+    // center of the whole picture, with the center being 0 and outside being 1 
+    //float vignette = length(p);
+    //by taking away from 1.5, you flip inside being lit and outside being dark
+    // 
     float vignette = 1.5 - length(p);
     dest *= vignette;
 
@@ -40,8 +47,16 @@ void main(){
     dest *= noise * 0.5 + 0.5;
 
     // ブラウン管モニタのような走査線 @@@
+    // this uses abs to make -1 to 1 => 1 to 1
+    // then make it into 0~ 1
     float scanLine = abs(sin(p.y * 200.0 + time * 5.0)) * 0.5 + 0.5;
-    dest *= scanLine;
+    //dest *= scanLine;
+
+    // sin => -1 to 1
+    // want to make sin => 0 ~ 1
+    float test = sin(p.y * 40.0 - time * 10.5)+ 1.0 / 2.0;
+    dest *= test * 0.2 + 0.5;
+
 
     // 様々なポストプロセスを乗算して出力する
     gl_FragColor = greenColor * vec4(vec3(dest), 1.0);

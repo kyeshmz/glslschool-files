@@ -83,4 +83,7 @@ void main(){
 
     // テクスチャの色にノイズの値を乗算する
     gl_FragColor = samplerColor * vec4(nColor * vig, 1.0);
+    
+    //no post process
+   // gl_FragColor = samplerColor;
 }
