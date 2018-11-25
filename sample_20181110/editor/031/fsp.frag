@@ -82,6 +82,7 @@ void main(){
     vec4 samplerColor = texture2D(texture, vTexCoord);
 
     // テクスチャの色にノイズの値を乗算する
+    // multiplying with the post process scene
     gl_FragColor = samplerColor * vec4(nColor * vig, 1.0);
     
     //no post process
